@@ -20,6 +20,9 @@ def main():
 
   raw_grams = soup.findAll('span', attrs={'style':'COLOR: navy'})
   grams = [returnGrams(e) for e in raw_grams if returnGrams(e) != '']
+  if len(grams) != len(species):
+    msg = "ERROR: The #species and #grams are not equal\n therefore the entire list will give offset values at some point. \n Best approach? Work manually..." 
+    sys.exit(1)
   final = zip(species, grams)
   out = codecs.open(TAXA+"_"+behave+".csv", 'w','utf-8')
   for s,g in final:
